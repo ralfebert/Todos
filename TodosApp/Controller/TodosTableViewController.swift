@@ -6,36 +6,28 @@ private let cellReuseIdentifier = "LabelCell"
 
 class TodosTableViewController: UITableViewController {
 
-    let service = TodosService()
+    let model = TodosModel()
     var todos = [Todo]()
-
-    @objc private func loadTodos() {
-        self.service.todos { result in
-            switch result {
-                case let .success(list):
-                    self.todos = list
-                    OperationQueue.main.addOperation {
-                        self.tableView.reloadData()
-                    }
-                case let .failure(error):
-                    fatalError(String(describing: error))
-            }
-        }
-
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(self.loadTodos), for: .valueChanged)
-        self.tableView.refreshControl = refreshControl
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.model.onChange = { [weak self] in
+            self?.refresh()
+        }
+
         self.navigationItem.title = "Todos"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(Self.add))
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-        self.loadTodos()
+        self.refresh()
     }
 
-    // MARK: - Table view data source
+    private func refresh() {
+        self.todos = self.model.todos
+        self.tableView.reloadData()
+    }
+
+    // MARK: - UITableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.todos.count
@@ -44,10 +36,45 @@ class TodosTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
 
-        let item = self.todos[indexPath.row]
-        cell.textLabel?.text = item.title
+        let todo = self.todos[indexPath.row]
+        cell.textLabel?.text = todo.text
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    // MARK: - UITableViewDelegate
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.edit(todo: self.todos[indexPath.row])
+    }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.model.delete(todo: self.todos[indexPath.row])
+        }
+    }
+
+    // MARK: - Edit operations
+
+    @objc private func add() {
+        self.edit(todo: Todo(id: UUID(), text: ""))
+    }
+
+    fileprivate func edit(todo: Todo) {
+        let alertController = UIAlertController(title: "Todo", message: nil, preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.text = todo.text
+        }
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak self] _ in
+            var editedTodo = todo
+            editedTodo.text = alertController.textFields?.first?.text ?? ""
+            self?.model.update(todo: editedTodo)
+        }))
+        self.present(alertController, animated: true)
     }
 
 }
