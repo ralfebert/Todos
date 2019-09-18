@@ -13,11 +13,11 @@
 		439489FA33A54C8F9A3BBCCA /* FileManager+DocumentsDirectoryUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FBC826362CB9DD8371A612 /* FileManager+DocumentsDirectoryUrl.swift */; };
 		4DD485BCF5F1183DED5F80A3 /* TodosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9DCA09CB738C71BA561DB0 /* TodosTableViewController.swift */; };
 		70082EA595D7F373E18ACAD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD0D3B630759FF9055CCD794 /* Assets.xcassets */; };
+		95C0B69B8402A232940A98B9 /* NSManagedObjectContext+ObjectWithURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3BFC9F766AD9BF0C1BE6F1 /* NSManagedObjectContext+ObjectWithURL.swift */; };
 		B7B6045A6F5EC46436F21A60 /* TodosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98CA50DD59C74F32BC6E822 /* TodosModel.swift */; };
 		BBB93E62E30E36F35F9E0921 /* NSPersistentContainer+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21972535842DAEB031709565 /* NSPersistentContainer+Defaults.swift */; };
-		BF4D568D233244E800EB3F63 /* NSFetchRequestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D568C233244E800EB3F63 /* NSFetchRequestObserver.swift */; };
-		BF4D568F233245A600EB3F63 /* NSManagedObjectContext+ObjectWithURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4D568E233245A600EB3F63 /* NSManagedObjectContext+ObjectWithURL.swift */; };
 		D5957D63D44057C1FD2AFDB7 /* CTodo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC02AD4F3E22B72D800B60A /* CTodo+CoreDataProperties.swift */; };
+		E26C6232E1773FC60DCDC3DF /* NSFetchRequestObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DAB5DB2913C03F567A20D8 /* NSFetchRequestObserver.swift */; };
 		EB068EB37535EBCA00498A5C /* CTodo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6AF30BBA233C601F3691EC15 /* CTodo.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -25,14 +25,15 @@
 		21972535842DAEB031709565 /* NSPersistentContainer+Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentContainer+Defaults.swift"; sourceTree = "<group>"; };
 		27992D6522D0701BADCDF32C /* TodosApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TodosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3266DA418E07CC2B0EAD5ACC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3C3BFC9F766AD9BF0C1BE6F1 /* NSManagedObjectContext+ObjectWithURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+ObjectWithURL.swift"; sourceTree = "<group>"; };
 		61035EC5A4779107FA4EBEE4 /* TodosAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosAppDelegate.swift; sourceTree = "<group>"; };
 		85FBC826362CB9DD8371A612 /* FileManager+DocumentsDirectoryUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+DocumentsDirectoryUrl.swift"; sourceTree = "<group>"; };
 		95234DAD8E515185A75BB837 /* Todos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todos.xcdatamodel; sourceTree = "<group>"; };
 		A20E72FA303FBF7A79A3706F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3DAB5DB2913C03F567A20D8 /* NSFetchRequestObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFetchRequestObserver.swift; sourceTree = "<group>"; };
+		A6AE4199041830D3EA610383 /* TodosApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodosApp.entitlements; sourceTree = "<group>"; };
 		BC18F960F97B5CCB4B1267E7 /* CTodo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CTodo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BC9DCA09CB738C71BA561DB0 /* TodosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosTableViewController.swift; sourceTree = "<group>"; };
-		BF4D568C233244E800EB3F63 /* NSFetchRequestObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFetchRequestObserver.swift; sourceTree = "<group>"; };
-		BF4D568E233245A600EB3F63 /* NSManagedObjectContext+ObjectWithURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+ObjectWithURL.swift"; sourceTree = "<group>"; };
 		DFC02AD4F3E22B72D800B60A /* CTodo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CTodo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F98CA50DD59C74F32BC6E822 /* TodosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosModel.swift; sourceTree = "<group>"; };
 		FD0D3B630759FF9055CCD794 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,9 +87,9 @@
 			isa = PBXGroup;
 			children = (
 				85FBC826362CB9DD8371A612 /* FileManager+DocumentsDirectoryUrl.swift */,
+				A3DAB5DB2913C03F567A20D8 /* NSFetchRequestObserver.swift */,
+				3C3BFC9F766AD9BF0C1BE6F1 /* NSManagedObjectContext+ObjectWithURL.swift */,
 				21972535842DAEB031709565 /* NSPersistentContainer+Defaults.swift */,
-				BF4D568C233244E800EB3F63 /* NSFetchRequestObserver.swift */,
-				BF4D568E233245A600EB3F63 /* NSManagedObjectContext+ObjectWithURL.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -96,6 +97,7 @@
 		8C0310D4A73EBE9415325B40 /* TodosApp */ = {
 			isa = PBXGroup;
 			children = (
+				A6AE4199041830D3EA610383 /* TodosApp.entitlements */,
 				D8447925ED957C1871769E55 /* App */,
 				BFE9A69703B19A989161C6AE /* Assets */,
 				6E6352704A45452432AFA8A5 /* Common */,
@@ -155,7 +157,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = 1F55EC7C9B7A45D796E40516;
@@ -184,12 +185,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF4D568D233244E800EB3F63 /* NSFetchRequestObserver.swift in Sources */,
 				3DB29A657C90D8021108FF87 /* CTodo+CoreDataClass.swift in Sources */,
-				BF4D568F233245A600EB3F63 /* NSManagedObjectContext+ObjectWithURL.swift in Sources */,
 				D5957D63D44057C1FD2AFDB7 /* CTodo+CoreDataProperties.swift in Sources */,
 				EB068EB37535EBCA00498A5C /* CTodo.xcdatamodeld in Sources */,
 				439489FA33A54C8F9A3BBCCA /* FileManager+DocumentsDirectoryUrl.swift in Sources */,
+				E26C6232E1773FC60DCDC3DF /* NSFetchRequestObserver.swift in Sources */,
+				95C0B69B8402A232940A98B9 /* NSManagedObjectContext+ObjectWithURL.swift in Sources */,
 				BBB93E62E30E36F35F9E0921 /* NSPersistentContainer+Defaults.swift in Sources */,
 				13E54FE38C3BFC0EA8E702D7 /* TodosAppDelegate.swift in Sources */,
 				B7B6045A6F5EC46436F21A60 /* TodosModel.swift in Sources */,
@@ -217,10 +218,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TodosApp/App/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.TodosApp;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -277,7 +275,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -294,10 +292,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TodosApp/App/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.TodosApp;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -348,7 +343,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

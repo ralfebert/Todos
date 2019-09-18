@@ -30,11 +30,13 @@ class TodosModel {
     init() {
         precondition(Thread.isMainThread)
 
-        self.persistentContainer = NSPersistentContainer(defaultContainerWithName: "CTodo")
+        self.persistentContainer = NSPersistentCloudKitContainer(defaultContainerWithName: "CTodo")
 
         let fetchRequest: NSFetchRequest<CTodo> = CTodo.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "text", ascending: true)]
         self.todosObserver = NSFetchRequestObserver(fetchRequest: fetchRequest, managedObjectContext: self.persistentContainer.viewContext)
+
+        self.viewContext.automaticallyMergesChangesFromParent = true
     }
 
     var onChange: (() -> Void)? {
