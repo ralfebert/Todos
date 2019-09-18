@@ -61,7 +61,7 @@ class TodosTableViewController: UITableViewController {
     // MARK: - Edit operations
 
     @objc private func add() {
-        self.edit(todo: Todo(id: UUID(), text: ""))
+        self.edit(todo: Todo(id: Todo.idNew, text: ""))
     }
 
     fileprivate func edit(todo: Todo) {

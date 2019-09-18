@@ -1,42 +1,72 @@
 // © 2019 Ralf Ebert — TodosApp
 
-import Foundation
-
-struct TodoDocument: Codable {
-    var todos: [Todo]
-}
+import CoreData
 
 struct Todo: Identifiable, Codable {
-    var id: UUID
+
+    static let idNew = URL(string: "todo:new")!
+
+    var id: URL
     var text: String
 }
 
-class TodosModel {
+class TodosModel: NSObject {
 
-    var persistence = JSONDocumentPersistence<TodoDocument>(filename: "todos.json")
-    private(set) var todos = [Todo]() {
-        didSet {
-            self.persistence.persistedValue = TodoDocument(todos: self.todos)
-            self.onChange?()
+    private var persistentContainer: NSPersistentContainer
+    private var todosFetchedResultsController: NSFetchedResultsController<CTodo>
+
+    var todos: [Todo] {
+        todosFetchedResultsController.fetchedObjects!.map {
+            Todo(id: $0.objectID.uriRepresentation(), text: $0.text!)
         }
     }
 
-    init() {
-        self.todos = self.persistence.persistedValue?.todos ?? []
+    override init() {
+        precondition(Thread.isMainThread)
+        self.persistentContainer = NSPersistentContainer(defaultContainerWithName: "CTodo")
+
+        let fetchRequest: NSFetchRequest<CTodo> = CTodo.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "text", ascending: true)]
+        self.todosFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+
+        super.init()
+
+        try! self.todosFetchedResultsController.performFetch()
+        self.todosFetchedResultsController.delegate = self
     }
 
     var onChange: (() -> Void)?
 
+    private var viewContext: NSManagedObjectContext {
+        self.persistentContainer.viewContext
+    }
+
+    private func fetchTodo(id: URL) -> CTodo {
+        return self.viewContext.object(with: self.viewContext.persistentStoreCoordinator!.managedObjectID(forURIRepresentation: id)!) as! CTodo
+    }
+
     func update(todo: Todo) {
-        if let index = todos.firstIndex(where: { $0.id == todo.id }) {
-            self.todos[index] = todo
+        let ctodo: CTodo
+        if todo.id == Todo.idNew {
+            ctodo = NSEntityDescription.insertNewObject(forEntityName: CTodo.entityName, into: self.viewContext) as! CTodo
         } else {
-            self.todos.append(todo)
+            ctodo = self.fetchTodo(id: todo.id)
         }
+        ctodo.text = todo.text
+        try! self.viewContext.save()
     }
 
     func delete(todo: Todo) {
-        self.todos.removeAll { $0.id == todo.id }
+        self.viewContext.delete(self.fetchTodo(id: todo.id))
+        try! self.viewContext.save()
+    }
+
+}
+
+extension TodosModel: NSFetchedResultsControllerDelegate {
+
+    func controllerDidChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.onChange?()
     }
 
 }
