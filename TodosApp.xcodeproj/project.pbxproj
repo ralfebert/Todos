@@ -9,21 +9,17 @@
 /* Begin PBXBuildFile section */
 		13E54FE38C3BFC0EA8E702D7 /* TodosAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61035EC5A4779107FA4EBEE4 /* TodosAppDelegate.swift */; };
 		396D6F1DDC3ADE016B72E88B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBC1EBEE0A3352DC1D8B5C2 /* LaunchScreen.storyboard */; };
-		439489FA33A54C8F9A3BBCCA /* FileManager+DocumentsDirectoryUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FBC826362CB9DD8371A612 /* FileManager+DocumentsDirectoryUrl.swift */; };
 		4DD485BCF5F1183DED5F80A3 /* TodosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9DCA09CB738C71BA561DB0 /* TodosTableViewController.swift */; };
 		70082EA595D7F373E18ACAD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD0D3B630759FF9055CCD794 /* Assets.xcassets */; };
 		B7B6045A6F5EC46436F21A60 /* TodosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98CA50DD59C74F32BC6E822 /* TodosModel.swift */; };
-		BF765832232904880035F1BE /* JSONDocumentPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF765831232904880035F1BE /* JSONDocumentPersistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		27992D6522D0701BADCDF32C /* TodosApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TodosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3266DA418E07CC2B0EAD5ACC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61035EC5A4779107FA4EBEE4 /* TodosAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosAppDelegate.swift; sourceTree = "<group>"; };
-		85FBC826362CB9DD8371A612 /* FileManager+DocumentsDirectoryUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+DocumentsDirectoryUrl.swift"; sourceTree = "<group>"; };
 		A20E72FA303FBF7A79A3706F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC9DCA09CB738C71BA561DB0 /* TodosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosTableViewController.swift; sourceTree = "<group>"; };
-		BF765831232904880035F1BE /* JSONDocumentPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDocumentPersistence.swift; sourceTree = "<group>"; };
 		F98CA50DD59C74F32BC6E822 /* TodosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosModel.swift; sourceTree = "<group>"; };
 		FD0D3B630759FF9055CCD794 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,21 +57,11 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		6E6352704A45452432AFA8A5 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				85FBC826362CB9DD8371A612 /* FileManager+DocumentsDirectoryUrl.swift */,
-				BF765831232904880035F1BE /* JSONDocumentPersistence.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		8C0310D4A73EBE9415325B40 /* TodosApp */ = {
 			isa = PBXGroup;
 			children = (
 				D8447925ED957C1871769E55 /* App */,
 				BFE9A69703B19A989161C6AE /* Assets */,
-				6E6352704A45452432AFA8A5 /* Common */,
 				2A10BBF08DB58CABE8B89345 /* Controller */,
 				2E2665B4A4A073751CC0D4CF /* Model */,
 			);
@@ -132,7 +118,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = 1F55EC7C9B7A45D796E40516;
@@ -161,8 +146,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				439489FA33A54C8F9A3BBCCA /* FileManager+DocumentsDirectoryUrl.swift in Sources */,
-				BF765832232904880035F1BE /* JSONDocumentPersistence.swift in Sources */,
 				13E54FE38C3BFC0EA8E702D7 /* TodosAppDelegate.swift in Sources */,
 				B7B6045A6F5EC46436F21A60 /* TodosModel.swift in Sources */,
 				4DD485BCF5F1183DED5F80A3 /* TodosTableViewController.swift in Sources */,
@@ -189,10 +172,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TodosApp/App/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.TodosApp;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -266,10 +246,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TodosApp/App/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.TodosApp;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;

@@ -2,27 +2,22 @@
 
 import Foundation
 
-struct TodoDocument: Codable {
-    var todos: [Todo]
-}
-
-struct Todo: Identifiable, Codable {
+struct Todo {
     var id: UUID
     var text: String
+
+    init(id: UUID = UUID(), text: String) {
+        self.id = id
+        self.text = text
+    }
 }
 
 class TodosModel {
 
-    var persistence = JSONDocumentPersistence<TodoDocument>(filename: "todos.json")
-    private(set) var todos = [Todo]() {
+    private(set) var todos = [Todo(text: "Todo 1"), Todo(text: "Todo 2"), Todo(text: "Todo 3")] {
         didSet {
-            self.persistence.persistedValue = TodoDocument(todos: self.todos)
             self.onChange?()
         }
-    }
-
-    init() {
-        self.todos = self.persistence.persistedValue?.todos ?? []
     }
 
     var onChange: (() -> Void)?
