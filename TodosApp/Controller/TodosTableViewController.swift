@@ -1,4 +1,24 @@
-// © 2019 Ralf Ebert — TodosApp
+// MIT License
+//
+// Copyright (c) 2019 Ralf Ebert
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
 
 import UIKit
 
@@ -9,20 +29,35 @@ class TodosTableViewController: UITableViewController {
     let todosService = TodosService.shared
     var todos = [Todo]()
 
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = "Todos"
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-
-        self.setupRefreshControl()
-        self.setupAddButton()
+        self.setupViews()
         self.loadTodos()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.loadTodos()
+    }
+
+    // MARK: - Additional UI
+
+    private func setupViews() {
+        self.setupNavigation()
+        self.setupTableView()
+        self.setupRefreshControl()
+        self.setupAddButton()
+    }
+
+    private func setupNavigation() {
+        self.navigationItem.title = "Todos"
+    }
+
+    private func setupTableView() {
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
     }
 
     private func setupRefreshControl() {
@@ -35,15 +70,19 @@ class TodosTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.add))
     }
 
+    // MARK: - Loading
+
     @objc private func loadTodos() {
         self.todosService.todos { result in
-            self.todos = result
             OperationQueue.main.addOperation {
+                self.todos = result
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()
             }
         }
     }
+
+    // MARK: - Editing
 
     @objc private func add() {
         self.edit(todo: Todo(title: "", url: nil))
@@ -85,8 +124,8 @@ class TodosTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let item = self.todos[indexPath.row]
-            self.todosService.delete(todo: item) {
+            let todo = self.todos[indexPath.row]
+            self.todosService.delete(todo: todo) {
                 self.loadTodos()
             }
         }
