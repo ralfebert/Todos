@@ -11,16 +11,16 @@
 		396D6F1DDC3ADE016B72E88B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DBC1EBEE0A3352DC1D8B5C2 /* LaunchScreen.storyboard */; };
 		4DD485BCF5F1183DED5F80A3 /* TodosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9DCA09CB738C71BA561DB0 /* TodosTableViewController.swift */; };
 		70082EA595D7F373E18ACAD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD0D3B630759FF9055CCD794 /* Assets.xcassets */; };
-		B7B6045A6F5EC46436F21A60 /* TodosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98CA50DD59C74F32BC6E822 /* TodosModel.swift */; };
+		7233CBA7EBFE645242750DF9 /* TodosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B590CFA9C755E4301755B4B /* TodosService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		27992D6522D0701BADCDF32C /* TodosApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TodosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3266DA418E07CC2B0EAD5ACC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61035EC5A4779107FA4EBEE4 /* TodosAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosAppDelegate.swift; sourceTree = "<group>"; };
+		9B590CFA9C755E4301755B4B /* TodosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosService.swift; sourceTree = "<group>"; };
 		A20E72FA303FBF7A79A3706F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC9DCA09CB738C71BA561DB0 /* TodosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosTableViewController.swift; sourceTree = "<group>"; };
-		F98CA50DD59C74F32BC6E822 /* TodosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosModel.swift; sourceTree = "<group>"; };
 		FD0D3B630759FF9055CCD794 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,7 +52,7 @@
 		2E2665B4A4A073751CC0D4CF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F98CA50DD59C74F32BC6E822 /* TodosModel.swift */,
+				9B590CFA9C755E4301755B4B /* TodosService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -147,7 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13E54FE38C3BFC0EA8E702D7 /* TodosAppDelegate.swift in Sources */,
-				B7B6045A6F5EC46436F21A60 /* TodosModel.swift in Sources */,
+				7233CBA7EBFE645242750DF9 /* TodosService.swift in Sources */,
 				4DD485BCF5F1183DED5F80A3 /* TodosTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

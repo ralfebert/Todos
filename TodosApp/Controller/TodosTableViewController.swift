@@ -6,25 +6,62 @@ private let cellReuseIdentifier = "LabelCell"
 
 class TodosTableViewController: UITableViewController {
 
-    let model = TodosModel()
+    let todosService = TodosService.shared
     var todos = [Todo]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.model.onChange = { [weak self] in
-            self?.refresh()
-        }
-
         self.navigationItem.title = "Todos"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(Self.add))
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-        self.refresh()
+
+        self.setupRefreshControl()
+        self.setupAddButton()
+        self.loadTodos()
     }
 
-    private func refresh() {
-        self.todos = self.model.todos
-        self.tableView.reloadData()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadTodos()
+    }
+
+    private func setupRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.loadTodos), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
+    }
+
+    private func setupAddButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.add))
+    }
+
+    @objc private func loadTodos() {
+        self.todosService.todos { result in
+            self.todos = result
+            OperationQueue.main.addOperation {
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+            }
+        }
+    }
+
+    @objc private func add() {
+        self.edit(todo: Todo(title: "", url: nil))
+    }
+
+    fileprivate func edit(todo: Todo) {
+        let alertController = UIAlertController(title: "Todo", message: nil, preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.text = todo.title
+        }
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak self] _ in
+            var editedTodo = todo
+            editedTodo.title = alertController.textFields?.first?.text ?? ""
+            self?.todosService.updateOrCreate(todo: editedTodo, completionHandler: { [weak self] _ in
+                self?.loadTodos()
+            })
+        }))
+        self.present(alertController, animated: true)
     }
 
     // MARK: - UITableViewDataSource
@@ -37,7 +74,7 @@ class TodosTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
 
         let todo = self.todos[indexPath.row]
-        cell.textLabel?.text = todo.text
+        cell.textLabel?.text = todo.title
 
         return cell
     }
@@ -46,35 +83,20 @@ class TodosTableViewController: UITableViewController {
         return true
     }
 
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let item = self.todos[indexPath.row]
+            self.todosService.delete(todo: item) {
+                self.loadTodos()
+            }
+        }
+    }
+
     // MARK: - UITableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.edit(todo: self.todos[indexPath.row])
-    }
-
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            self.model.delete(todo: self.todos[indexPath.row])
-        }
-    }
-
-    // MARK: - Edit operations
-
-    @objc private func add() {
-        self.edit(todo: Todo(id: UUID(), text: ""))
-    }
-
-    fileprivate func edit(todo: Todo) {
-        let alertController = UIAlertController(title: "Todo", message: nil, preferredStyle: .alert)
-        alertController.addTextField { textField in
-            textField.text = todo.text
-        }
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak self] _ in
-            var editedTodo = todo
-            editedTodo.text = alertController.textFields?.first?.text ?? ""
-            self?.model.update(todo: editedTodo)
-        }))
-        self.present(alertController, animated: true)
+        let todo = self.todos[indexPath.row]
+        self.edit(todo: todo)
     }
 
 }
